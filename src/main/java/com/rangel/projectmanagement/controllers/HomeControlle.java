@@ -31,6 +31,6 @@ public class HomeControlle {
         List<Employee> employees = empRepo.findAll();
         model.addAttribute("employees", employees);
         
-        return "home";
+        return "main/home";
     }
 }
