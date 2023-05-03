@@ -1,5 +1,7 @@
 package com.rangel.projectmanagement.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,13 @@ public class EmployeeController {
 
     @Autowired
     EmployeeRepostory empRepo;
+
+    @GetMapping
+    public String displayEmployees(Model model) {
+        List<Employee> employees = empRepo.findAll();
+        model.addAttribute("employees", employees);
+        return "employees/list-employees";
+    }
     
     @GetMapping("/new")
     public String displayEmployeeForm(Model model) {

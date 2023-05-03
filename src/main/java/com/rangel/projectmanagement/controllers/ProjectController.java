@@ -1,5 +1,7 @@
 package com.rangel.projectmanagement.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +17,14 @@ import com.rangel.projectmanagement.entities.Project;
 public class ProjectController {
 
     @Autowired
-    ProjectRepository proRep;
+    ProjectRepository proRepo;
+
+    @GetMapping
+    public String displayProjects(Model model) {
+        List<Project> projects = proRepo.findAll();
+        model.addAttribute("projects", projects);
+        return "projects/list-projects";
+    }
     
     @GetMapping("/new")
     public String displayProjectForm(Model model) {
@@ -27,7 +36,7 @@ public class ProjectController {
 
     @PostMapping("/save")
     public String createProject(Project project, Model model) {
-        proRep.save(project);
+        proRepo.save(project);
 
         // use a redirect to prevent duplicate submissions
         return "redirect:/projects/new";
