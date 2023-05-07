@@ -77,11 +77,11 @@ public class Employee {
         this.email = email;
     }
 
-    public List<Project> getProject() {
+    public List<Project> getProjects() {
         return projects;
     }
 
-    public void setProject(List<Project> projects) {
+    public void setProjects(List<Project> projects) {
         this.projects = projects;
     }
 }
