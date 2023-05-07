@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.rangel.projectmanagement.dao.EmployeeRepostory;
 import com.rangel.projectmanagement.dao.ProjectRepository;
@@ -45,17 +44,10 @@ public class ProjectController {
     }
 
     @PostMapping("/save")
-    public String createProject(Project project, @RequestParam List<Long> employees, Model model) {
+    public String createProject(Project project, Model model) {
         proRepo.save(project);
 
-        Iterable<Employee> chosenEmployees = empRepo.findAllById(employees);
-
-        for (Employee emp : chosenEmployees) {
-            emp.setProject(project);
-            empRepo.save(emp);
-        }
-
         // use a redirect to prevent duplicate submissions
-        return "redirect:/projects/new";
+        return "redirect:/projects/";
     }
 }
