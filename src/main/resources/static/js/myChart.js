@@ -1,17 +1,33 @@
-new Chart(document.getElementById("myPieChart"), {
+const chartDataStr = decodeHTML(chartData);
+const chartJSONArray = JSON.parse(chartDataStr);
+
+// const arrayLength = chartJSONArray.length;
+const numericData = [];
+const labelData = [];
+
+chartJSONArray.forEach((element) => {
+  numericData.push(element.value);
+  labelData.push(element.label);
+});
+
+new Chart(document.getElementById('myPieChart'), {
   type: 'pie',
   data: {
-    labels: ['January', 'February', 'March'],
+    labels: labelData,
     datasets: [
       {
         label: 'My First dataset',
         backgroundColor: ['#3e95cd', '#8e5ea2', '#3cba9f'],
-        data: [12, 19, 15],
+        data: numericData,
         borderWidth: 1,
       },
     ],
   },
   options: {
+    title: {
+      display: true,
+      text: 'Porject Statuses',
+    },
     scales: {
       y: {
         beginAtZero: true,
@@ -19,3 +35,14 @@ new Chart(document.getElementById("myPieChart"), {
     },
   },
 });
+
+// "[
+//   {"value": 1, "label": "COMPLETED"},
+//   {"value": 2, "label": "INPROGRESS"},
+//   {"value": 1, "label": "NOTSTARTED"}
+// ]"
+function decodeHTML(html) {
+  const txt = document.createElement('textarea');
+  txt.innerHTML = html;
+  return txt.value;
+}
