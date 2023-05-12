@@ -1,20 +1,24 @@
 package com.rangel.projectmanagement.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rangel.projectmanagement.dao.EmployeeRepostory;
 import com.rangel.projectmanagement.dao.ProjectRepository;
+import com.rangel.projectmanagement.dto.ChartData;
 import com.rangel.projectmanagement.dto.EmployeeProject;
-import com.rangel.projectmanagement.entities.Employee;
 import com.rangel.projectmanagement.entities.Project;
 
 @Controller
-public class HomeControlle {
+public class HomeController {
     
     @Autowired
     ProjectRepository proRepo;
@@ -23,10 +27,20 @@ public class HomeControlle {
     EmployeeRepostory empRepo;
 
     @GetMapping("/")
-    public String displayHome(Model model) {
+    public String displayHome(Model model) throws JsonProcessingException {
+
+        Map<String, Object> map = new HashMap<>();
+
         // we are querying database for projects
         List<Project> projects = proRepo.findAll();
         model.addAttribute("projects", projects);
+
+        List<ChartData> projectData = proRepo.getProjectStatus();
+
+        // Lets convert a projectData object into a json structure for use in Javascript
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonString = objectMapper.writeValueAsString(projectData);
+        model.addAttribute("projectStatusCount", jsonString);
 
         // we are querying database for employees
         List<EmployeeProject> employeesProjectCount = empRepo.employeeProjects();

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import com.rangel.projectmanagement.dto.ChartData;
 import com.rangel.projectmanagement.entities.Project;
 
 public interface ProjectRepository extends CrudRepository<Project, Long> {
@@ -16,10 +17,10 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
         nativeQuery = true,
         value = ""
             + "SELECT"
-            + "  stage as label,"
-            + "  COUNT(*) as value "
+            + "  stage as label, "
+            + "  COUNT(*) as \"value\" "
             + "FROM project "
-            + "GROUP BY stage "
+            + "GROUP BY stage"
     )
-    public List<> complteProjects();
+    public List<ChartData> getProjectStatus();
 }
