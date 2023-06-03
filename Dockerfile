@@ -8,6 +8,9 @@ WORKDIR /usr/local/bin/
 
 ADD ./target/pma-app.jar .
 
-ENV version=docker
+ENV version=aws-db-usage
+ENV dbuser=${dbuser}
+ENV dbpass=${dbpass}
+ENV jdbcurl=${jdbcurl}
 
 ENTRYPOINT ["java", "-jar", "pma-app.jar"]
