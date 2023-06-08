@@ -2,12 +2,9 @@ package com.rangel.projectmanagement.logging;
 
 import java.util.Arrays;
 
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,11 +23,11 @@ public class ApplicationLoggerAspect {
 
     @Around("definePackagePointcuts()")
     public Object logAround(ProceedingJoinPoint jp) {
-        log.info(" \n \n \n ");
-        log.info("********** Before Method Execution ************ \n {}, {} () with arguments[s] = {}",
+        log.debug(" \n \n \n ");
+        log.debug("********** Before Method Execution ************ \n {}, {} () with arguments[s] = {}",
                 jp.getSignature().getDeclaringTypeName(),
                 jp.getSignature().getName(), Arrays.toString(jp.getArgs()));
-        log.info("______________________________________________________ \n \n \n");
+        log.debug("______________________________________________________ \n \n \n");
 
         Object o = null;
         try {
@@ -39,10 +36,10 @@ public class ApplicationLoggerAspect {
             e.printStackTrace();
         }
 
-        log.info("********** After Method Execution ************ \n {}, {} () with arguments[s] = {}",
+        log.debug("********** After Method Execution ************ \n {}, {} () with arguments[s] = {}",
                 jp.getSignature().getDeclaringTypeName(),
                 jp.getSignature().getName(), Arrays.toString(jp.getArgs()));
-        log.info("______________________________________________________ \n \n \n");
+        log.debug("______________________________________________________ \n \n \n");
 
         return o;
     }
