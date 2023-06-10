@@ -6,3 +6,7 @@
 - JPA
 - Thymeleaf
 - DevTools
+- JUnit
+- PostgreSQL
+- Spring Security
+- JDBC
