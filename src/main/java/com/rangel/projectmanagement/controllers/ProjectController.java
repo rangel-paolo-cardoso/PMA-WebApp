@@ -48,6 +48,6 @@ public class ProjectController {
         proRepo.save(project);
 
         // use a redirect to prevent duplicate submissions
-        return "redirect:/projects/";
+        return "redirect:/projects";
     }
 }
