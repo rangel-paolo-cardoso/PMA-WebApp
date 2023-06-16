@@ -10,9 +10,6 @@ import com.rangel.projectmanagement.entities.Employee;
 
 public interface EmployeeRepostory extends CrudRepository<Employee, Long> {
 
-    @Override
-    public List<Employee> findAll();
-
     @Query(
         nativeQuery = true,
         value = ""
