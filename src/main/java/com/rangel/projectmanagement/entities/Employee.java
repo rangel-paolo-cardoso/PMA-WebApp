@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.rangel.projectmanagement.validators.UniqueValue;
 
 @Entity
 public class Employee {
@@ -37,7 +38,7 @@ public class Employee {
 
     @NotNull
     @Email
-    @Column(unique = true)
+    @UniqueValue
     private String email;
 
     @ManyToMany(cascade = {

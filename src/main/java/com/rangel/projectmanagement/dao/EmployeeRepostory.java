@@ -24,4 +24,6 @@ public interface EmployeeRepostory extends CrudRepository<Employee, Long> {
             + "ORDER BY 3 DESC"
     )
     public List<EmployeeProject> employeeProjects();
+
+    public Employee findByEmail(String email);
 }
