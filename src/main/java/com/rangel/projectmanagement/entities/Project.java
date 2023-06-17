@@ -13,6 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+// import javax.validation.constraints.;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,10 +28,17 @@ public class Project {
     @SequenceGenerator(name = "project_seq", sequenceName = "project_seq", allocationSize = 1)
     private long projectId;
 
+    @NotNull
+    @NotBlank
+    @Size(min = 2, max = 100)
     private String name;
 
+    @NotNull
     private String stage; // NOTSTARTED, COMPLETED, INPROGRESS
 
+    @NotNull
+    @NotBlank
+    @Size(min = 10, max = 500)
     private String description;
 
     @ManyToMany(cascade = {

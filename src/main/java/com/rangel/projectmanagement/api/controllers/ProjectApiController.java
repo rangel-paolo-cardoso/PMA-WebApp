@@ -1,5 +1,7 @@
 package com.rangel.projectmanagement.api.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -36,18 +38,18 @@ public class ProjectApiController {
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public Project create(@RequestBody Project project) {
+    public Project create(@RequestBody @Valid Project project) {
         return proRepo.save(project);
     }
 
     @PutMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public Project update(@RequestBody Project project) {
+    public Project update(@RequestBody @Valid Project project) {
         return proRepo.save(project);
     }
 
     @PatchMapping(path = "/{id}", consumes = "application/json")
-    public Project partialUpdate(@PathVariable("id") Long id, @RequestBody Project patchProject) {
+    public Project partialUpdate(@PathVariable("id") Long id, @RequestBody @Valid Project patchProject) {
         Project project = proRepo.findById(id).get();
 
         if (patchProject.getName() != null) {
