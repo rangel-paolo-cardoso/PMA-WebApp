@@ -10,3 +10,4 @@
 - PostgreSQL
 - Spring Security
 - JDBC
+- Validation
