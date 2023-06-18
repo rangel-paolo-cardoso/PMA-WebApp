@@ -3,12 +3,12 @@ package com.rangel.projectmanagement.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.rangel.projectmanagement.dto.EmployeeProject;
 import com.rangel.projectmanagement.entities.Employee;
 
-public interface EmployeeRepostory extends CrudRepository<Employee, Long> {
+public interface EmployeeRepostory extends PagingAndSortingRepository<Employee, Long> {
 
     @Query(
         nativeQuery = true,
