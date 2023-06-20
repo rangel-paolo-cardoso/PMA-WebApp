@@ -11,3 +11,4 @@
 - Spring Security
 - JDBC
 - Validation
+- Spring Data Rest
