@@ -11,7 +11,7 @@ import com.rangel.projectmanagement.entities.Employee;
 
 
 @Service
-public class EmployeeeService {
+public class EmployeeService {
     
     @Autowired
     EmployeeRepostory empRepo;
@@ -26,5 +26,17 @@ public class EmployeeeService {
 
     public List<EmployeeProject> employeeProject() {
         return empRepo.employeeProjects();
+    }
+
+    public Employee findByEmployeeId(long id) {
+        return empRepo.findByEmployeeId(id);
+    }
+
+    public Iterable<Employee> findAll() {
+        return empRepo.findAll();
+    }
+
+    public void delete(Employee employee) {
+        empRepo.delete(employee);
     }
 }

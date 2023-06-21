@@ -1,27 +1,26 @@
 package com.rangel.projectmanagement.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.rangel.projectmanagement.dao.EmployeeRepostory;
 import com.rangel.projectmanagement.entities.Employee;
+import com.rangel.projectmanagement.services.EmployeeService;
 
 @Controller
 @RequestMapping("/employees")
 public class EmployeeController {
 
     @Autowired
-    EmployeeRepostory empRepo;
+    EmployeeService empService;
 
     @GetMapping
     public String displayEmployees(Model model) {
-        Iterable<Employee> employees = empRepo.findAll();
+        Iterable<Employee> employees = empService.findAll();
         model.addAttribute("employees", employees);
         return "employees/list-employees";
     }
@@ -36,7 +35,21 @@ public class EmployeeController {
     @PostMapping("/save")
     public String createEmployeee(Employee employee) {
         // save to the database using an employee crud repository
-        empRepo.save(employee);
+        empService.save(employee);
+        return "redirect:/employees";
+    }
+
+    @GetMapping("/update")
+    public String displayEmployeeUpdateForm(@RequestParam("id") long id, Model model) {
+        Employee employee = empService.findByEmployeeId(id);
+        model.addAttribute("employee", employee);
+        return "employees/new-employee";
+    }
+
+    @GetMapping("/delete")
+    public String deleteEmployee(@RequestParam("id") long id, Model model) {
+        Employee employee = empService.findByEmployeeId(id);
+        empService.delete(employee);
         return "redirect:/employees";
     }
 }
