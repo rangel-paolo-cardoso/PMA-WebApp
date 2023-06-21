@@ -6,6 +6,8 @@
 
     <div class="container">
       <form th:action="@{/projects/save}" th:object="${project}" method="POST">
+        <!-- This will be used to bind to the project that was clicked on USED FOR UPDATES -->
+        <input type="hidden" th:field="${project.projectId}" />
         <input type="text" placeholder="Project Name" th:field="${project.name}" />
 
         <select th:field="${project.stage}">

@@ -47,7 +47,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/delete")
-    public String deleteEmployee(@RequestParam("id") long id, Model model) {
+    public String deleteEmployee(@RequestParam("id") long id) {
         Employee employee = empService.findByEmployeeId(id);
         empService.delete(employee);
         return "redirect:/employees";
