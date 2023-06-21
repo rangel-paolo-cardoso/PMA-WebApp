@@ -19,7 +19,8 @@ import com.rangel.projectmanagement.entities.Project;
 @Controller
 public class HomeController {
 
-    @Value("${version}")
+    // @Value("${version}")
+    @Value("dev")
     private String version;
     
     @Autowired
