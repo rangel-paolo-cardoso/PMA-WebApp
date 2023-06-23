@@ -28,16 +28,14 @@ public class Project {
     @SequenceGenerator(name = "project_seq", sequenceName = "project_seq", allocationSize = 1)
     private long projectId;
 
-    @NotNull
-    @NotBlank
+    @NotBlank(message = "* MUst not be blank")
     @Size(min = 2, max = 100)
     private String name;
 
-    @NotNull
+    @NotBlank(message = "* MUst not be blank")
     private String stage; // NOTSTARTED, COMPLETED, INPROGRESS
 
-    @NotNull
-    @NotBlank
+    @NotBlank(message = "* MUst not be blank")
     @Size(min = 10, max = 500)
     private String description;
 

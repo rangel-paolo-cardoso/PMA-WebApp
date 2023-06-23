@@ -14,7 +14,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -36,7 +35,7 @@ public class Employee {
     @Size(min = 1, max = 50)
     private String lastName;
 
-    @NotBlank
+    @NotBlank(message = "* Must give en email address")
     @Email(message = "* Must be a valid email address")
     @UniqueValue
     private String email;
