@@ -1,6 +1,7 @@
 package com.rangel.projectmanagement.entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,9 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-// import javax.validation.constraints.;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -28,16 +26,17 @@ public class Project {
     @SequenceGenerator(name = "project_seq", sequenceName = "project_seq", allocationSize = 1)
     private long projectId;
 
-    @NotBlank(message = "* MUst not be blank")
-    @Size(min = 2, max = 100)
     private String name;
 
-    @NotBlank(message = "* MUst not be blank")
     private String stage; // NOTSTARTED, COMPLETED, INPROGRESS
 
-    @NotBlank(message = "* MUst not be blank")
-    @Size(min = 10, max = 500)
     private String description;
+
+    @NotBlank(message = "* Date cannot be empty")
+    private Date startDate;
+
+    @NotBlank(message = "* Date cannot be empty")
+    private Date endDate;
 
     @ManyToMany(cascade = {
             CascadeType.DETACH,
@@ -92,6 +91,22 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public List<Employee> getEmployees() {
