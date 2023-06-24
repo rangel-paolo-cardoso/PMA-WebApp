@@ -31,8 +31,9 @@ public interface ProjectRepository extends PagingAndSortingRepository<Project, L
         + "SELECT"
         + "  name as projectName,"
         + "  start_date as startDate,"
-        + "  end_date as endDate"
-        + "FROM project"
+        + "  end_date as endDate "
+        + "FROM project "
+        + "WHERE start_date IS NOT NULL"
     )
     public List<TimeChartData> getTimeData();
 }

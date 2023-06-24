@@ -81,8 +81,8 @@ public class ProjectController {
         System.out.println("-------------project timelines--------------");
         System.out.println(jsonTimelineString);
 
-        model.addAttribute("projectTimeline", jsonTimelineString);
+        model.addAttribute("projectTimeList", jsonTimelineString);
 
-        return "project/project-timelines";
+        return "projects/timelines";
     }
 }

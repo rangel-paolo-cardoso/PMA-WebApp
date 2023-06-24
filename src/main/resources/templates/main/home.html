@@ -31,7 +31,7 @@
           <canvas id="myPieChart" height="50" width="50"></canvas>
 
           <script>
-            let chartData = "[[${projectStatusCount}]]";
+            const chartData = "[[${projectStatusCount}]]";
           </script>
         </div>
       </div>
@@ -58,8 +58,17 @@
             </tbody>
           </table>
         </div>
+
+        <div class="col-md-4">
+          <canvas id="myTimeLineChart" height="50" width="50"></canvas>
+
+          <script>
+            const timelineDate = "" //"[[${projectStatusCount}]]";
+          </script>
+        </div>
       </div>
     </div>
     <script th:src="@{/js/myChart.js}"></script>
+    <script th:src="@{/js/timelineChart.js}"></script>
   </body>
 </html>
