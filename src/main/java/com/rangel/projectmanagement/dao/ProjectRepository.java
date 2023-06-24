@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.rangel.projectmanagement.dto.ChartData;
+import com.rangel.projectmanagement.dto.TimeChartData;
 import com.rangel.projectmanagement.entities.Project;
 
 public interface ProjectRepository extends PagingAndSortingRepository<Project, Long> {
@@ -23,4 +24,15 @@ public interface ProjectRepository extends PagingAndSortingRepository<Project, L
             + "GROUP BY stage"
     )
     public List<ChartData> getProjectStatus();
+
+    @Query(
+        nativeQuery = true,
+        value = ""
+        + "SELECT"
+        + "  name as projectName,"
+        + "  start_date as startDate,"
+        + "  end_date as endDate"
+        + "FROM project"
+    )
+    public List<TimeChartData> getTimeData();
 }

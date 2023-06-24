@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rangel.projectmanagement.dao.ProjectRepository;
+import com.rangel.projectmanagement.dto.TimeChartData;
 import com.rangel.projectmanagement.entities.Project;
 
 @Service
@@ -30,5 +31,7 @@ public class ProjectService {
         proRepo.delete(project);
     }
 
-
+    public List<TimeChartData> getTimeData() {
+        return proRepo.getTimeData();
+    }
 }
